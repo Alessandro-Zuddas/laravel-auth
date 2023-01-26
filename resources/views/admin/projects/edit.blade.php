@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1 class="my-2">Crea un nuovo progetto:</h1>
+    <h1 class="my-2">Modifica {{ $project->name }}</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -14,24 +14,25 @@
         </div>
     @endif
 
-    <form action="{{ route("admin.projects.store") }}" method="POST">
+    <form action="{{ route("admin.projects.update", $project) }}" method="POST">
 
         @csrf
+        @method("PUT")
 
         <div class="mb-3">
             <label for="name" class="form-label">Nome progetto:</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il nome" value="{{ old($project->name) }}">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il nome" value="{{ old("name", $project->name) }}">
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione progetto:</label>
-            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Inserisci la descrizione">value="{{ old($project->description) }}"</textarea>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Inserisci la descrizione">{{ old("description", $project->description) }}</textarea>
         </div>
         <div class="mb-3">
             <label for="date" class="form-label">Data di creazione:</label>
-            <input type="date" class="form-control" id="date" name="date" placeholder="Inserisci la data di creazione" value="{{ old($project->date) }}">
+            <input type="date" class="form-control" id="date" name="date" placeholder="Inserisci la data di creazione" value="{{ old("date"), $project->date }}">
         </div>
 
-        <button type="submit" class="btn btn-success">Crea</button>
+        <button type="submit" class="btn btn-success">Modifica</button>
         <a href="{{ route("admin.projects.index") }}" class="btn btn-secondary">Indietro</a>
     </form>
 

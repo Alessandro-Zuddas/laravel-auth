@@ -20,15 +20,15 @@
 
         <div class="mb-3">
             <label for="name" class="form-label">Nome progetto:</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il nome" value="{{ old($project->name) }}">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il nome" value="{{ old("name") }}">
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione progetto:</label>
-            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Inserisci la descrizione">value="{{ old($project->description) }}"</textarea>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Inserisci la descrizione">{{ old("description") }}</textarea>
         </div>
         <div class="mb-3">
             <label for="date" class="form-label">Data di creazione:</label>
-            <input type="date" class="form-control" id="date" name="date" placeholder="Inserisci la data di creazione" value="{{ old($project->date) }}">
+            <input type="date" class="form-control" id="date" name="date" placeholder="Inserisci la data di creazione" value="{{ old("date") }}">
         </div>
 
         <button type="submit" class="btn btn-success">Crea</button>

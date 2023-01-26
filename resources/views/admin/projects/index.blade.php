@@ -41,8 +41,8 @@
             {{-- Actions buttons --}}
             <td class="text-center">
               <a href="{{ route("admin.projects.show", $project->id) }}" class="btn btn-primary mt-1"><i class="fa-solid fa-eye"></i></a>
-              <a href="" class="btn btn-warning mt-1"><i class="fa-solid fa-pen"></i></a>
-              <a href="" class="btn btn-danger mt-1"><i class="fa-solid fa-trash"></i></a>
+              <a href="{{ route("admin.projects.edit", $project->id) }}" class="btn btn-warning mt-1"><i class="fa-solid fa-pen"></i></a>
+              <a href="{{ route("admin.projects.destroy", $project->id) }}" class="btn btn-danger mt-1"><i class="fa-solid fa-trash"></i></a>
             </td>
             {{-- /Actions buttons --}}
           </tr>
