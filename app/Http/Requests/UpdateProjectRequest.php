@@ -27,6 +27,7 @@ class UpdateProjectRequest extends FormRequest
             "name" => "required|string|max:100",
             "description" => "required|string",
             "date" => "required|date",
+            "project_image" => "nullable|image|max:2048",
         ];
     }
 }

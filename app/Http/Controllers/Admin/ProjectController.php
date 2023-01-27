@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Illuminate\Support\Str;
 
@@ -43,9 +44,16 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
+        
         $new_project = new Project();
         $new_project->fill($data);
         $new_project->slug = Str::slug($new_project->name);
+
+        if( $data["project_image"]){
+            $image_path = Storage::disk("public")->put("uploads", $data["project_image"]);
+            $new_project->project_image = $image_path;
+        }
+
         $new_project->save();
 
         return redirect()->route("admin.projects.index")->with("message", "Il progetto è stato creato con successo!");
@@ -85,6 +93,12 @@ class ProjectController extends Controller
         $data = $request->validated();
 
         $project->slug = Str::slug($data["name"]);
+
+        if( $data["project_image"]){
+            $image_path = Storage::disk("public")->put("uploads", $data["project_image"]);
+            $project->project_image = $image_path;
+        }
+
         $project->update($data);
 
         return redirect()->route("admin.projects.index")->with("message", "Il progetto $project->name è stato modificato con successo!");
