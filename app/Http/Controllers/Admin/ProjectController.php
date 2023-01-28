@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Exists;
 
 class ProjectController extends Controller
 {
@@ -49,7 +50,7 @@ class ProjectController extends Controller
         $new_project->fill($data);
         $new_project->slug = Str::slug($new_project->name);
 
-        if( $data["project_image"]){
+        if( isset($data["project_image"]) ){
             $image_path = Storage::disk("public")->put("uploads", $data["project_image"]);
             $new_project->project_image = $image_path;
         }
@@ -94,7 +95,7 @@ class ProjectController extends Controller
 
         $project->slug = Str::slug($data["name"]);
 
-        if( $data["project_image"]){
+        if( isset($data["project_image"]) ){
             $image_path = Storage::disk("public")->put("uploads", $data["project_image"]);
             $project->project_image = $image_path;
         }

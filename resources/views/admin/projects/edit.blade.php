@@ -31,12 +31,10 @@
             <label for="date" class="form-label">Data di creazione:</label>
             <input type="date" class="form-control" id="date" name="date" placeholder="Inserisci la data di creazione" value="{{ old("date"), $project->date }}">
         </div>
-        @if($project->project_image)
-            <div class="mb-3">
-                <label for="project_image" class="form-label">Scegli un'immagine:</label>
-                <input type="file" class="form-control" id="project_image" name="project_image" placeholder="Inserisci un'immagine" value="{{ old("project_image") }}">
-            </div>
-        @endif
+        <div class="mb-3">
+            <label for="project_image" class="form-label">Scegli un'immagine:</label>
+            <input type="file" class="form-control" id="project_image" name="project_image" placeholder="Inserisci un'immagine" value="{{ old("project_image") }}">
+        </div>
 
         <button type="submit" class="btn btn-success">Modifica</button>
         <a href="{{ route("admin.projects.index") }}" class="btn btn-secondary">Indietro</a>
